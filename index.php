@@ -1,3 +1,9 @@
+<!--
+Vera Mankongvanichkul
+4/11/2019
+http://vmankongvanichkul.greenriverdev.com/it328/dating
+Registration page for an online dog matching site. Made utilizing HTML with Bootstrap.
+-->
 <?php
 /** Created by PhpStorm... */
 
@@ -10,6 +16,9 @@ require_once('vendor/autoload.php');
 
 //Create an instance of the Base class
 $f3 = Base::instance();
+
+//fat-free error reporting
+$f3->
 
 //define a default route
 $f3->route('GET /', function() {
