@@ -1,0 +1,24 @@
+
+h1, .navbar-brand{
+    font-family: 'Caveat', cursive; !important;
+    text-shadow: 2px 2px 8px black;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+}
+
+img#doggos {
+    width: 100%;
+    border-radius: 10px;
+}
+
+
+#main {
+    border: solid 1px gray;
+    border-radius: 10px;
+}
