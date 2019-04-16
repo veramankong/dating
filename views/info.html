@@ -4,4 +4,72 @@ Vera Mankongvanichkul
 http://vmankongvanichkul.greenriverdev.com/it328/
 
 -->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
 
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!--Custom Font-->
+    <link href="https://fonts.googleapis.com/css?family=Caveat" rel="stylesheet">
+
+    <!--Custom Styles-->
+    <link rel="stylesheet" href="../styles/style.css">
+    <title>Doggo Love Connection</title>
+</head>
+<body>
+
+<nav class="navbar bg-light shadow-lg">
+    <a class="navbar-brand">Doggo Love Connection</a>
+</nav>
+
+<div class="container-fluid py-4 px-5">
+    <div class="container-fluid  py-4 px-5 shadow-lg" id="main">
+        <div class="col-8">
+            <h1 class="text-center mt-5 mb-4">Personal Information</h1>
+            <form action="info.html" method="post">
+                <div class="form-group">
+                    <label for="fname">First Name:</label>
+                    <input type="text" id="fname" name="fname" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="lname">Last Name:</label>
+                    <input type="text" id="lname" name="lname" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="age">Age:</label>
+                    <input type="text" id="age" name="age" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label>Gender:</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="male" value="Male">
+                        <label class="form-check-label" for="male">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="female" value="Female">
+                        <label class="form-check-label" for="female">Female</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="text" id="phone" name="phone" class="form-control">
+                </div>
+
+            </form>
+        </div>
+        <!--Create button-->
+        <div class="text-right mt-5">
+            <a class="btn btn-info btn-lg" href="views/profile.html">Next ></a>
+        </div>
+    </div>
+
+</div>
