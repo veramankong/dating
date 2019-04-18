@@ -1,11 +1,6 @@
-<!--
-Vera Mankongvanichkul
-4/11/2019
-http://vmankongvanichkul.greenriverdev.com/it328/dating
-Registration page for an online dog matching site. Made utilizing HTML with Bootstrap.
--->
 <?php
-/** Created by PhpStorm... */
+
+session_start();
 
 //Turn on error reporting
 ini_set('display_errors', 1);
@@ -13,9 +8,6 @@ error_reporting(E_ALL);
 
 //Require the autoload file
 require_once('vendor/autoload.php');
-
-//Header
-include('views/header.html');
 
 //Create an instance of the Base class
 $f3 = Base::instance();
@@ -26,32 +18,63 @@ $f3->route('GET /', function() {
     echo $view->render('views/home.html');
 });
 
+//define a home route
+$f3->route('GET /home', function() {
+    $view = new Template();
+    echo $view->render('views/home.html');
+});
+
 //Route to information form
 $f3->route('GET /information', function() {
+
     $view = new Template();
     echo $view->render('views/info.html');
 });
 
 //Route to profile form
-$f3->route('GET /profile', function() {
+$f3->route('POST /profile', function() {
+
+//save form info in session for next form
+    $_SESSION['fname'] = $_POST['fname'];
+    $_SESSION['lname'] = $_POST['lname'];
+    $_SESSION['age'] = $_POST['age'];
+    $_SESSION['gender'] = $_POST['gender'];
+    $_SESSION['phone'] = $_POST['phone'];
+
+
     $view = new Template();
     echo $view->render('views/profile.html');
 });
 
 //Route to interests form
-$f3->route('GET /interests', function() {
+$f3->route('POST /interests', function() {
+
+    //save form info in session for next form
+    $_SESSION['email'] = $_POST['email'];
+    $_SESSION['state'] = $_POST['state'];
+    $_SESSION['seeking'] = $_POST['seeking'];
+    $_SESSION['bio'] = $_POST['bio'];
+
     $view = new Template();
     echo $view->render('views/interests.html');
 });
 
-//Route to information form
-$f3->route('GET /summary', function() {
+//Route to summary
+$f3->route('POST /summary', function() {
+
+    //save form info in session for next form
+
+    //go through interests array
+    $interests_string = implode(', ', $_POST['interests']);
+    trim($interests_string);
+    substr($interests_string, -1);
+
+    //save form info in session
+    $_SESSION['interests'] = $interests_string;
+
     $view = new Template();
     echo $view->render('views/summary.html');
 });
-
-//Include footer
-include('views/footer.html');
 
 
 //Run fat free
