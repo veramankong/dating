@@ -1,35 +1,114 @@
+<!--
+Vera Mankongvanichkul
+
+http://vmankongvanichkul.greenriverdev.com/it328/
+
+-->
+
+<include href="views/header.html"/>
+
 <div class="container-fluid py-4 px-5">
     <div class="container-fluid  py-4 px-5 shadow-lg" id="main">
-        <div class="row">
-            <div class="col-6">
-                <h1 class="text-center mt-5 mb-4">Doggo Love Connection</h1>
 
-                <h5>Welcome to the web's most successful dog matching website. At <em>Doggo Love Connection</em> we'll
-                    set your doggo up with the perfect match. We have the highest success rate of match makers on the web.
-                    User's are matched by interest and location. Find out why so many others have found love on our site!
-                </h5>
+        <h1 class="mt-5 mb-4">Interests</h1>
+        <hr>
+        <form action="summary" method="post">
 
-                <h4 class="text-center mt-5 mb-4">Hear what our users are borking about!</h4>
-
-                <!--Quote section-->
-                <hr>
-
-                <h5 class="px-5 py-2">"My hooman found me a good boi to play with!" - Max</h5>
-
-                <h5 class="px-5 py-2">"Other websites did me a heckin bamboozle! This site deserves all treats!" - Spot</h5>
-
-                <h5 class="px-5 py-2">"I been on here since pupper, I boop with so many frenz now!" - Melo</h5>
-
-                <hr>
-                <!--Create button-->
-                <div class="text-center mt-5">
-                    <a class="btn btn-info btn-lg">Create a Profile!</a>
+            <div class="form-group">
+                <h6><label>In-door Interests</label></h6>
+                <div class="row form-group ml-4">
+                    <div class="form-check form-check-inline col">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" name="interests[]" value="TV">
+                        TV</label>
+                    </div>
+                    <div class="form-check form-check-inline col">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" name="interests[]" value="Movies">
+                        Movies</label>
+                    </div>
+                    <div class="form-check form-check-inline col">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" name="interests[]" value="Cooking">
+                        Cooking</label>
+                    </div>
+                    <div class="form-check form-check-inline col">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" name="interests[]" value="Boardgames">
+                        Boardgames</label>
+                    </div>
+                </div>
+                <div class="row form-group ml-4">
+                    <div class="form-check form-check-inline col">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" name="interests[]" value="Puzzles">
+                        Puzzles</label>
+                    </div>
+                    <div class="form-check form-check-inline col">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" name="interests[]" value="Toys">
+                        Reading</label>
+                    </div>
+                    <div class="form-check form-check-inline col">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" name="interests[]" value="Window watching">
+                        Playing cards</label>
+                    </div>
+                    <div class="form-check form-check-inline col">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" name="interests[]" value="Treats">
+                        Video games</label>
+                    </div>
                 </div>
             </div>
-            <!--image-->
-            <div class="col-6">
-                <img src="images/doggos.jpg" alt="doggos" id="doggos">
+
+            <div class="form-group">
+                <h6><label>Out-door Interests</label></h6>
+                <div class="row form-group ml-4">
+                    <div class="form-check form-check-inline col">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" name="outdoor[]" value="Hiking">
+                            Hiking</label>
+                    </div>
+                    <div class="form-check form-check-inline col">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" name="outdoor[]" value="Playing fetch">
+                            Biking</label>
+                    </div>
+                    <div class="form-check form-check-inline col">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" name="outdoor[]" value="Swimming">
+                            Swimming</label>
+                    </div>
+                    <div class="form-check form-check-inline col">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" name="outdoor[]" value="Collecting bones">
+                            Collecting</label>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="row form-group ml-2">
+                        <div class="form-check form-check-inline col">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="outdoor[]" value="Walks">
+                                Walking</label>
+                        </div>
+                        <div class="form-check form-check-inline col ml-4">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="outdoor[]" value="Climbing">
+                                Climbing</label>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+
+            <!--Create button-->
+            <div class="text-right mt-5">
+                <button class="btn btn-info btn-lg" href="summary">Next ></button>
+            </div>
+        </form>
     </div>
 </div>
+
+<include href="views/footer.html"/>
