@@ -1,10 +1,11 @@
 <?php
 
-session_start();
 
 //Turn on error reporting
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
+
+session_start();
 
 //Require the autoload file
 require_once('vendor/autoload.php');
@@ -34,7 +35,7 @@ $f3->route('GET /information', function() {
 //Route to profile form
 $f3->route('POST /profile', function() {
 
-//save form info in session for next form
+    //save session variables
     $_SESSION['fname'] = $_POST['fname'];
     $_SESSION['lname'] = $_POST['lname'];
     $_SESSION['age'] = $_POST['age'];
@@ -62,14 +63,12 @@ $f3->route('POST /interests', function() {
 //Route to summary
 $f3->route('POST /summary', function() {
 
-    //save form info in session for next form
-
     //go through interests array
     $interests_string = implode(', ', $_POST['interests']);
     trim($interests_string);
     substr($interests_string, -1);
 
-    //save form info in session
+    //save session variables
     $_SESSION['interests'] = $interests_string;
 
     $view = new Template();

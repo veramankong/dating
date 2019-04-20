@@ -1,3 +1,9 @@
+/*
+Vera Mankongvanichkul
+4/11/19
+http://vmankongvanichkul.greenriverdev.com/it328/dating
+CSS styles file
+*/
 
 h1, .navbar-brand{
     font-family: 'Caveat', cursive; !important;
@@ -17,6 +23,9 @@ img#doggos {
     border-radius: 10px;
 }
 
+img#dog {
+    width:70%;
+}
 
 #main {
     border: solid 1px gray;
