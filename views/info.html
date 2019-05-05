@@ -18,36 +18,58 @@ Form for personal information
             <div class="row">
                 <div class="col-8">
                     <div class="form-group">
-                        <h6><label for="fname">First Name</label></h6>
-                        <input type="text" id="fname" name="fname" class="form-control">
+                        <h6><label for="fname">First Name *</label></h6>
+                        <check if="{{ isset(@errors['fname']) && !isset(@SESSION.fname) }}">
+                            <em class="text-danger">{{ @errors['fname'] }}</em>
+                        </check>
+                        <input type="text" id="fname" name="fname" class="form-control"
+                               value="{{ @fname }}" required>
                     </div>
 
                     <div class="form-group">
-                        <h6><label for="lname">Last Name</label></h6>
-                        <input type="text" id="lname" name="lname" class="form-control">
+                        <h6><label for="lname">Last Name *</label></h6>
+                        <check if="{{ isset(@errors['lname']) }}">
+                            <em class="text-danger">{{ @errors['lname'] }}</em>
+                        </check>
+                        <input type="text" id="lname" name="lname" class="form-control"
+                               value="{{ @lname }}" required>
                     </div>
 
                     <div class="form-group">
-                        <h6><label for="age">Age</label></h6>
-                        <input type="text" id="age" name="age" class="form-control">
+                        <h6><label for="age">Age *</label></h6>
+                        <check if="{{ isset(@errors['age']) }}">
+                            <em class="text-danger">{{ @errors['age'] }}</em>
+                        </check>
+                        <input type="text" id="age" name="age" class="form-control"
+                               value="{{ @age }}" required>
                     </div>
 
                     <h6><label for="gender">Gender</label></h6>
                     <div class="form-group" id="gender">
 
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="gender" id="male" value="Male">
+                            <input class="form-check-input" type="radio" name="gender" id="male" value="Male"
+                            <check if="{{isset(@SESSION.gender) && (@SESSION.gender == 'Male') }}">
+                                checked="checked"
+                            </check>>
                             <label class="form-check-label" for="male">Male</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="gender" id="female" value="Female">
+                            <input class="form-check-input" type="radio" name="gender" id="female" value="Female"
+                            <check if="{{isset(@SESSION.gender) && (@SESSION.gender == 'Female') }}">
+                                checked="checked"
+                            </check>>
                             <label class="form-check-label" for="female">Female</label>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <h6><label for="phone">Phone Number</label></h6>
-                        <input type="text" id="phone" name="phone" class="form-control">
+                        <h6><label for="phone">Phone Number *</label></h6>
+                        <check if="{{ isset(@errors['phone']) }}">
+                            <em class="text-danger">{{ @errors['phone'] }}</em>
+                        </check>
+                        <input type="text" id="phone" name="phone" class="form-control"
+                               value="{{ @phone }}" required>
                     </div>
                 </div>
                 <div class="col-4">
