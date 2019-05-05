@@ -5,7 +5,7 @@
  * @return boolean
  */
 function validName($name) {
-    return (!empty($name) && ctype_alpha($name));
+    return !empty($name) && ctype_alpha($name);
 }
 
 /** Validate if age is numeric and between 18 & 118
@@ -42,14 +42,14 @@ function validEmail($email) {
  * @return boolean
  */
 function validInterests($interests) {
-    global $f3;
+
     //Interests are optional
     if (empty($interests)) {
         return true;
     }
     //validate selected interests
     foreach ($interests as $interest) {
-        if (!in_array($interest, $f3->get('interests'))) {
+        if (!in_array($interest, $interests)) {
             return false;
         }
     }

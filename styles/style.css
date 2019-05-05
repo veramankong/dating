@@ -1,7 +1,7 @@
 /*
 Vera Mankongvanichkul
 4/11/19
-http://vmankongvanichkul.greenriverdev.com/it328/dating
+http://vmankongvanichkul.greenriverdev.com/it328/dating/styles/style.css
 CSS styles file
 */
 
@@ -31,3 +31,9 @@ img#dog {
     border: solid 1px gray;
     border-radius: 10px;
 }
+
+#note {
+    background-color: lightgray;
+    border-radius: 10px;
+}
+
