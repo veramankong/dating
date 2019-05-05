@@ -52,7 +52,7 @@ Form for indoor and outdoor interests
                     <repeat group="{{ @outdoor1 }}" value="{{ @outdoorOptions }}">
                         <div class="form-check form-check-inline col">
                             <label class="form-check-label"><input type="checkbox" class="form-check-input"
-                                                                   name="interests[]" value="{{ @indoorOptions }}">
+                                                                   name="interests[]" value="{{ @outdoorOptions }}">
                                 <check if="{{ !empty(@interests) && in_array(@outdoorOptions, @interests) }}">
                                     checked="checked"
                                 </check>
@@ -64,7 +64,7 @@ Form for indoor and outdoor interests
                     <repeat group="{{ @outdoor2 }}" value="{{ @outdoorOptions }}">
                         <div class="form-check form-check-inline col">
                             <label class="form-check-label"><input type="checkbox" class="form-check-input"
-                                                                   name="interests[]" value="{{ @indoorOptions }}">
+                                                                   name="interests[]" value="{{ @outdoorOptions }}">
                                 <check if="{{ !empty(@interests) && in_array(@outdoorOptions, @interests) }}">
                                     checked="checked"
                                 </check>
