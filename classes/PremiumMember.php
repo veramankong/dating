@@ -11,17 +11,31 @@
 
 class PremiumMember extends Member
 {
-    // strings
+    //strings
     private $_inDoorInterests;
-    // strings
+    //strings
     private $_outDoorInterests;
 
     /**
-     *
+     * Parameterized constructor for PremiumMember from superclass Member
+     * @param $fname string, The first name of the member
+     * @param $lname string, The last name of the member
+     * @param $age integer, The age of the member
+     * @param $gender string, The first name of the member
+     * @param $phone integer, The phone number of the member
+     * @param $_inDoorInterests string, Member's indoor interests
+     * @param $_outDoorInterests string, Member's outdoor interests
      */
-    function __construct($fname, $lname, $age, $gender, $phone)
+    function __construct($fname, $lname, $age, $gender, $phone,$_inDoorInterests, $_outDoorInterests)
     {
+        //Pass name, age, gender, phone to Member constructor
         parent:: __construct($fname, $lname, $age, $gender, $phone);
+
+        //Set indoor interests
+        $this->_inDoorInterests = $_inDoorInterests;
+
+        //Set outdoor interests
+        $this->_outDoorInterests = $_outDoorInterests;
     }
 
     /**
