@@ -17,6 +17,14 @@ class PremiumMember extends Member
     private $_outDoorInterests;
 
     /**
+     *
+     */
+    function __construct($fname, $lname, $age, $gender, $phone)
+    {
+        parent:: __construct($fname, $lname, $age, $gender, $phone);
+    }
+
+    /**
      * Get premium member's indoor interests
      * @return string
      */
