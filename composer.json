@@ -9,5 +9,8 @@
   "require": {
     "bcosca/fatfree-core": "dev-master",
     "bcosca/fatfree": "^3.6"
+  },
+  "autoload": {
+    "classmap": ["classes/"]
   }
 }
