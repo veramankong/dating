@@ -7,13 +7,14 @@ Form for indoor and outdoor interests
 
 <include href="views/header.html"/>
 
+
 <div class="container-fluid py-4 px-5">
     <div class="container-fluid  py-4 px-5 shadow-lg" id="main">
 
         <h1 class="mt-5 mb-4">Interests</h1>
         <hr>
         <form action="" method="post">
-
+            <input type="hidden" name="hidden">
             <div class="form-group">
                 <h6><label>In-door Interests</label></h6>
                 <check if="{{ isset(@errors['interests']) }}">
@@ -23,8 +24,8 @@ Form for indoor and outdoor interests
                     <repeat group="{{ @indoor1 }}" value="{{ @indoorOptions }}">
                         <div class="form-check form-check-inline col">
                         <label class="form-check-label"><input type="checkbox" class="form-check-input"
-                                                               name="interests[]" value="{{ @indoorOptions }}">
-                            <check if="{{ !empty(@interests) && in_array(@indoorOptions, @interests) }}">
+                                                               name="indoor[]" value="{{ @indoorOptions }}">
+                            <check if="{{ !empty(@indoor) && in_array(@indoorOptions, @indoor) }}">
                                 checked="checked"
                             </check>
                             {{ @indoorOptions }}</label><br>
@@ -35,8 +36,8 @@ Form for indoor and outdoor interests
                     <repeat group="{{ @indoor2 }}" value="{{ @indoorOptions }}">
                         <div class="form-check form-check-inline col">
                             <label class="form-check-label"><input type="checkbox" class="form-check-input"
-                                                                   name="interests[]" value="{{ @indoorOptions }}">
-                                <check if="{{ !empty(@interests) && in_array(@indoorOptions, @interests) }}">
+                                                                   name="indoor[]" value="{{ @indoorOptions }}">
+                                <check if="{{ !empty(@indoor) && in_array(@indoorOptions, @indoor) }}">
                                     checked="checked"
                                 </check>
                                 {{ @indoorOptions }}</label><br>
@@ -52,8 +53,8 @@ Form for indoor and outdoor interests
                     <repeat group="{{ @outdoor1 }}" value="{{ @outdoorOptions }}">
                         <div class="form-check form-check-inline col">
                             <label class="form-check-label"><input type="checkbox" class="form-check-input"
-                                                                   name="interests[]" value="{{ @outdoorOptions }}">
-                                <check if="{{ !empty(@interests) && in_array(@outdoorOptions, @interests) }}">
+                                                                   name="outdoor[]" value="{{ @outdoorOptions }}">
+                                <check if="{{ !empty(@outdoor) && in_array(@outdoorOptions, @outdoor) }}">
                                     checked="checked"
                                 </check>
                                 {{ @outdoorOptions }}</label><br>
@@ -64,8 +65,8 @@ Form for indoor and outdoor interests
                     <repeat group="{{ @outdoor2 }}" value="{{ @outdoorOptions }}">
                         <div class="form-check form-check-inline col">
                             <label class="form-check-label"><input type="checkbox" class="form-check-input"
-                                                                   name="interests[]" value="{{ @outdoorOptions }}">
-                                <check if="{{ !empty(@interests) && in_array(@outdoorOptions, @interests) }}">
+                                                                   name="outdoor[]" value="{{ @outdoorOptions }}">
+                                <check if="{{ !empty(@outdoor) && in_array(@outdoorOptions, @outdoor) }}">
                                     checked="checked"
                                 </check>
                                 {{ @outdoorOptions }}</label><br>
@@ -78,6 +79,7 @@ Form for indoor and outdoor interests
                 <button type="submit" class="btn btn-info btn-lg">Next ></button>
             </div>
         </form>
+
     </div>
 </div>
 

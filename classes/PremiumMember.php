@@ -23,26 +23,18 @@ class PremiumMember extends Member
      * @param $age integer, The age of the member
      * @param $gender string, The first name of the member
      * @param $phone integer, The phone number of the member
-     * @param $_inDoorInterests string, Member's indoor interests
-     * @param $_outDoorInterests string, Member's outdoor interests
      */
-    function __construct($fname, $lname, $age, $gender, $phone,$_inDoorInterests, $_outDoorInterests)
+    function __construct($fname, $lname, $age, $gender, $phone)
     {
         //Pass name, age, gender, phone to Member constructor
         parent:: __construct($fname, $lname, $age, $gender, $phone);
-
-        //Set indoor interests
-        $this->_inDoorInterests = $_inDoorInterests;
-
-        //Set outdoor interests
-        $this->_outDoorInterests = $_outDoorInterests;
     }
 
     /**
      * Get premium member's indoor interests
      * @return string
      */
-    public function getInDoorInterests()
+    function getInDoorInterests()
     {
         return $this->_inDoorInterests;
     }
@@ -52,7 +44,7 @@ class PremiumMember extends Member
      * @param string $inDoorInterests premium member's indoor interests
      * @return void
      */
-    public function setInDoorInterests($inDoorInterests)
+    function setInDoorInterests($inDoorInterests)
     {
         $this->_inDoorInterests = $inDoorInterests;
     }
@@ -61,7 +53,7 @@ class PremiumMember extends Member
      * Get premium member's outdoor interests
      * @return string
      */
-    public function getOutDoorInterests()
+    function getOutDoorInterests()
     {
         return $this->_outDoorInterests;
     }
@@ -70,7 +62,7 @@ class PremiumMember extends Member
      * Set premium member's outdoor interests
      * @param string $outDoorInterests premium member's outdoor interests
      */
-    public function setOutDoorInterests($outDoorInterests)
+    function setOutDoorInterests($outDoorInterests)
     {
         $this->_outDoorInterests = $outDoorInterests;
     }

@@ -33,26 +33,26 @@ class Member
 
     /**
      * Parameterized constructor for Member
-     * @param $_fname string, The first name of the member
-     * @param $_lname string, The last name of the member
-     * @param $_age integer, The age of the member
-     * @param $_gender string, The first name of the member
-     * @param $_phone integer, The phone number of the member
+     * @param $fname string, The first name of the member
+     * @param $lname string, The last name of the member
+     * @param $age integer, The age of the member
+     * @param $gender string, The first name of the member
+     * @param $phone integer, The phone number of the member
      */
-    public function __construct($_fname, $_lname, $_age, $_gender, $_phone)
+    function __construct($fname, $lname, $age, $gender, $phone)
     {
-        $this->_fname = $_fname;
-        $this->_lname = $_lname;
-        $this->_age = $_age;
-        $this->_gender = $_gender;
-        $this->_phone = $_phone;
+        $this->_fname = $fname;
+        $this->_lname = $lname;
+        $this->_age = $age;
+        $this->_gender = $gender;
+        $this->_phone = $phone;
     }
 
     /**
      * Get the first name of member
      * @return string
      */
-    public function getFname()
+    function getFname()
     {
         return $this->_fname;
     }
@@ -62,7 +62,7 @@ class Member
      * @param string $fname first name of member
      * @return void
      */
-    public function setFname($fname)
+    function setFname($fname)
     {
         $this->_fname = $fname;
     }
@@ -71,7 +71,7 @@ class Member
      * Get member's last name
      * @return string
      */
-    public function getLname()
+    function getLname()
     {
         return $this->_lname;
     }
@@ -81,7 +81,7 @@ class Member
      * @param string $lname last name of member
      * @return void
      */
-    public function setLname($lname)
+    function setLname($lname)
     {
         $this->_lname = $lname;
     }
@@ -90,7 +90,7 @@ class Member
      * Get member's age
      * @return integer
      */
-    public function getAge()
+    function getAge()
     {
         return $this->_age;
     }
@@ -100,7 +100,7 @@ class Member
      * @param integer $age member's age
      * @return void
      */
-    public function setAge($age)
+    function setAge($age)
     {
         $this->_age = $age;
     }
@@ -109,7 +109,7 @@ class Member
      * Get member's gender
      * @return string
      */
-    public function getGender()
+    function getGender()
     {
         return $this->_gender;
     }
@@ -119,7 +119,7 @@ class Member
      * @param string $gender member's gender
      * @return void
      */
-    public function setGender($gender)
+    function setGender($gender)
     {
         $this->_gender = $gender;
     }
@@ -128,7 +128,7 @@ class Member
      * Get member's phone number
      * @return integer
      */
-    public function getPhone()
+    function getPhone()
     {
         return $this->_phone;
     }
@@ -138,7 +138,7 @@ class Member
      * @param mixed $phone member's phone number
      * @return void
      */
-    public function setPhone($phone)
+    function setPhone($phone)
     {
         $this->_phone = $phone;
     }
@@ -147,7 +147,7 @@ class Member
      * Get member's email
      * @return string
      */
-    public function getEmail()
+    function getEmail()
     {
         return $this->_email;
     }
@@ -157,7 +157,7 @@ class Member
      * @param string $email member's email
      * @return void
      */
-    public function setEmail($email)
+    function setEmail($email)
     {
         $this->_email = $email;
     }
@@ -166,7 +166,7 @@ class Member
      * Get member's state
      * @return string
      */
-    public function getState()
+    function getState()
     {
         return $this->_state;
     }
@@ -176,7 +176,7 @@ class Member
      * @param string $state member's state
      * @return void
      */
-    public function setState($state)
+    function setState($state)
     {
         $this->_state = $state;
     }
@@ -185,7 +185,7 @@ class Member
      * Get member's preference
      * @return string
      */
-    public function getSeeking()
+    function getSeeking()
     {
         return $this->_seeking;
     }
@@ -194,7 +194,7 @@ class Member
      * @param string $seeking preference of member
      * @return void
      */
-    public function setSeeking($seeking)
+    function setSeeking($seeking)
     {
         $this->_seeking = $seeking;
     }
@@ -203,7 +203,7 @@ class Member
      * Get member's bio
      * @return string
      */
-    public function getBio()
+    function getBio()
     {
         return $this->_bio;
     }
@@ -213,7 +213,7 @@ class Member
      * @param string $bio member's bio
      * @return void
      */
-    public function setBio($bio)
+    function setBio($bio)
     {
         $this->_bio = $bio;
     }

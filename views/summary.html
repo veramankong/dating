@@ -14,14 +14,19 @@ Displays all information gathered from forms
             <div class="col-6 mt-3">
                 <!-- all info from forms -->
                 <ul class="list-group">
-                    <li class="list-group-item">Name: {{ @SESSION.fname }} {{ @SESSION.lname }}</li>
-                    <li class="list-group-item">Gender: {{ @SESSION.gender }}</li>
-                    <li class="list-group-item">Age: {{ @SESSION.age }}</li>
-                    <li class="list-group-item">Phone Number: {{ @SESSION.phone }}</li>
-                    <li class="list-group-item">Email: {{ @SESSION.email }}</li>
-                    <li class="list-group-item">State: {{ @SESSION.state }}</li>
-                    <li class="list-group-item">Seeking: {{ @SESSION.seeking }}</li>
-                    <li class="list-group-item">Interests: {{ @SESSION.interests }} </li>
+                    <li class="list-group-item">Name: {{ @SESSION.memberType->getFname() }}
+                        {{ @SESSION.memberType->getLname() }}</li>
+                    <li class="list-group-item">Gender: {{ @SESSION.memberType->getGender() }}</li>
+                    <li class="list-group-item">Age: {{ @SESSION.memberType->getAge() }}</li>
+                    <li class="list-group-item">Phone: {{ @SESSION.memberType->getPhone() }}</li>
+                    <li class="list-group-item">Email: {{ @SESSION.memberType->getEmail() }}</li>
+                    <li class="list-group-item">State: {{ @SESSION.memberType->getState() }}</li>
+                    <li class="list-group-item">Seeking: {{ @SESSION.memberType->getSeeking() }}</li>
+                    <check if="{{ get_class(@SESSION.memberType) == 'PremiumMember' }}">
+                        <li class="list-group-item">Interests: {{ @SESSION.memberType->getIndoorInterests() }}<check
+                                if="!empty({{ @SESSION.memberType->getOutdoorInterests()}})">,</check>
+                            {{ @SESSION.memberType->getOutdoorInterests() }}</li>
+                    </check>
                 </ul>
 
             </div>
