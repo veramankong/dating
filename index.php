@@ -59,12 +59,11 @@ $f3->route('GET|POST /info', function($f3) {
 
         //check first name
         if (isset($_POST['fname'])) {
-            $fname = $_POST['fname'];
-            $f3->set('fname', $fname);
 
             //validate first name
-            if (validName($fname)) {
-                $_SESSION['fname'] = $fname;
+            if (validName($_POST['fname'])) {
+                $fname = $_POST['fname'];
+                $f3->set('fname', $fname);
             } else {
                 $f3->set("errors['fname']", "Please enter an alphabetic first name.");
             }
@@ -72,11 +71,11 @@ $f3->route('GET|POST /info', function($f3) {
 
         //check last name
         if (isset($_POST['lname'])) {
-            $lname = $_POST['lname'];
-            $f3->set('lname', $lname);
+
             //validate last name
-            if (validName($lname)) {
-                $_SESSION['lname'] = $lname;
+            if (validName($_POST['lname'])) {
+                $lname = $_POST['lname'];
+                $f3->set('lname', $lname);
             } else {
                 $f3->set("errors['lname']", "Please enter an alphabetic last name.");
             }
@@ -84,12 +83,11 @@ $f3->route('GET|POST /info', function($f3) {
 
         //check age
         if (isset($_POST['age'])) {
-            $age = $_POST['age'];
-            $f3->set('age', $age);
 
             //validate age
-            if (validAge($age)) {
-                $_SESSION['age'] = $age;
+            if (validAge($_POST['age'])) {
+                $age = $_POST['age'];
+                $f3->set('age', $age);
             } else {
                 $f3->set("errors['age']", "Please enter a numeric age.");
             }
@@ -97,12 +95,11 @@ $f3->route('GET|POST /info', function($f3) {
 
         //check phone number
         if (isset($_POST['phone'])) {
-            $phone = $_POST['phone'];
-            $f3->set('phone', $phone);
 
             //validate phone number
-            if (validPhone($phone)) {
-                $_SESSION['phone'] = $phone;
+            if (validPhone($_POST['phone'])) {
+                $phone = $_POST['phone'];
+                $f3->set('phone', $phone);
             } else {
                 $f3->set("errors['phone']", "Please enter a valid phone number.");
             }
@@ -112,7 +109,6 @@ $f3->route('GET|POST /info', function($f3) {
         if (isset($_POST['gender'])) {
             $gender = $_POST['gender'];
             $f3->set('gender', $gender);
-            $_SESSION['gender'] = $_POST['gender'];
         }
 
         // store in class
@@ -143,11 +139,11 @@ $f3->route('GET|POST /profile', function($f3) {
     if(!empty($_POST)) {
         //save email, state, seeking, and bio
         if (isset($_POST['email'])) {
-            $email = $_POST['email'];
-            $f3->set('email', $email);
+
             //validate email
-            if (validEmail($email)) {
-                $_SESSION['email'] = $email;
+            if (validEmail($_POST['email'])) {
+                $email = $_POST['email'];
+                $f3->set('email', $email);
             } else {
                 $f3->set("errors['email']", "Please enter a valid email address");
             }
@@ -160,11 +156,6 @@ $f3->route('GET|POST /profile', function($f3) {
         $f3->set('state', $state);
         $f3->set('seeking', $seeking);
         $f3->set('bio', $bio);
-
-        //get remaining form data
-        $_SESSION['state'] = $_POST['state'];
-        $_SESSION['seeking'] = $_POST['seeking'];
-        $_SESSION['bio'] = trim($_POST['bio']);
 
         //save data to class
         $memberType->setEmail($email);
@@ -197,12 +188,13 @@ $f3->route('GET|POST /interests', function($f3) {
     if(!empty($_POST)) {
         //check outdoor interests
         if(!empty($_POST['outdoor'])) {
-            $outdoor = $_POST['outdoor'];
-            if(validInterests($outdoor)) {
+
+            //validate outdoor interests
+            if(validInterests($_POST['outdoor'])) {
+                $outdoor = $_POST['outdoor'];
                 $f3->set('outdoor', $outdoor);
                 $outdoor_string = implode(', ', $outdoor);
                 $memberType->setOutdoorInterests($outdoor_string);
-                $_SESSION['outdoor'] = $outdoor_string;
             } else {
                 $f3->set("errors['interests']", "Please select valid interests");
             }
@@ -210,12 +202,13 @@ $f3->route('GET|POST /interests', function($f3) {
 
         //check indoor interests
         if(!empty($_POST['indoor'])) {
-            $indoor = $_POST['indoor'];
-            if(validInterests($indoor)) {
+
+            //validate indoor interests
+            if(validInterests($_POST['indoor'])) {
+                $indoor = $_POST['indoor'];
                 $f3->set('indoor', $indoor);
                 $indoor_string = implode(', ', $indoor);
                 $memberType->setIndoorInterests($indoor_string);
-                $_SESSION['indoor'] = $indoor_string;
             } else {
                 $f3->set("errors['interests']", "Please select valid interests");
             }
