@@ -25,10 +25,10 @@ Displays all information gathered from forms
                     <check if="{{ get_class(@SESSION.memberType) == 'PremiumMember' }}">
                         <li class="list-group-item">Interests:
                             <repeat group="{{ @SESSION.memberType->getIndoorInterests() }}" value="{{ @indoor }}">
-                                {{ @indoor }},
+                                *{{ @indoor }}
                             </repeat>
                             <repeat group="{{ @SESSION.memberType->getOutdoorInterests() }}" value="{{ @outdoor }}">
-                                {{ @outdoor }},
+                                *{{ @outdoor }}
                             </repeat>
                         </li>
                     </check>
