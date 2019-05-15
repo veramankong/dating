@@ -193,8 +193,8 @@ $f3->route('GET|POST /interests', function($f3) {
             if(validInterests($_POST['outdoor'])) {
                 $outdoor = $_POST['outdoor'];
                 $f3->set('outdoor', $outdoor);
-                $outdoor_string = implode(', ', $outdoor);
-                $memberType->setOutdoorInterests($outdoor_string);
+                //$outdoor_string = implode(', ', $outdoor);
+                $memberType->setOutdoorInterests($outdoor);
             } else {
                 $f3->set("errors['interests']", "Please select valid interests");
             }
@@ -207,8 +207,8 @@ $f3->route('GET|POST /interests', function($f3) {
             if(validInterests($_POST['indoor'])) {
                 $indoor = $_POST['indoor'];
                 $f3->set('indoor', $indoor);
-                $indoor_string = implode(', ', $indoor);
-                $memberType->setIndoorInterests($indoor_string);
+                //$indoor_string = implode(', ', $indoor);
+                $memberType->setIndoorInterests($indoor);
             } else {
                 $f3->set("errors['interests']", "Please select valid interests");
             }
