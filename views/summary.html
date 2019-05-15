@@ -24,12 +24,10 @@ Displays all information gathered from forms
                     <li class="list-group-item">Seeking: {{ @SESSION.memberType->getSeeking() }}</li>
                     <check if="{{ get_class(@SESSION.memberType) == 'PremiumMember' }}">
                         <li class="list-group-item">Interests:
-                            <repeat group="{{ @SESSION.memberType->getIndoorInterests() }}"
-                                    value="{{ @indoor }}">
+                            <repeat group="{{ @SESSION.memberType->getIndoorInterests() }}" value="{{ @indoor }}">
                                 {{ @indoor }},
                             </repeat>
-                            <repeat group="{{ @SESSION.memberType->getOutdoorInterests() }}"
-                                    value="{{ @outdoor }}" counter="{{ @ctr }}">
+                            <repeat group="{{ @SESSION.memberType->getOutdoorInterests() }}" value="{{ @outdoor }}">
                                 {{ @outdoor }},
                             </repeat>
                         </li>
