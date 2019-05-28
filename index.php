@@ -1,17 +1,15 @@
 <?php
-
-
 //Turn on error reporting
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-
-
 //Require the autoload file
 require_once('vendor/autoload.php');
 require_once('model/validation.php');
+require_once 'model/database.php';
 
 session_start();
+$db = new Database();
 
 //Create an instance of the Base class
 $f3 = Base::instance();
@@ -19,18 +17,16 @@ $f3 = Base::instance();
 //set arrays
 $f3->set('indoor1', array('TV', 'Movies', 'Eating', 'Sleeping'));
 $f3->set('indoor2', array('Puzzles', 'Toys', 'Window watching', 'Treats'));
-
 $f3->set('outdoor1', array('Hiking', 'Playing fetch', 'Swimming', 'Collecting bones'));
 $f3->set('outdoor2', array('Walks', 'Climbing', 'Dog park', 'Chasing cars'));
-
 $f3->set('states', array('Alabama','Alaska','Arizona','Arkansas','California',
-        'Colorado','Connecticut','Delaware','District of Columbia','Florida','Georgia',
-        'Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana',
-        'Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri',
-        'Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York',
-        'North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island',
-        'South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington',
-        'West Virginia','Wisconsin','Wyoming'));
+    'Colorado','Connecticut','Delaware','District of Columbia','Florida','Georgia',
+    'Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana',
+    'Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri',
+    'Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York',
+    'North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island',
+    'South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington',
+    'West Virginia','Wisconsin','Wyoming'));
 
 //turn on fat-free error reporting
 $f3->set('DEBUG', 3);
@@ -54,7 +50,6 @@ $f3->route('GET|POST /info', function($f3) {
 
     //make empty session array
     $_SESSION = array();
-
     if(!empty($_POST)) {
 
         //check first name
@@ -120,13 +115,11 @@ $f3->route('GET|POST /info', function($f3) {
             $member = new Member($fname, $lname, $age, $gender, $phone);
             $_SESSION['memberType'] = $member;
             $f3->set('memberType', $member);
-
         }
 
         //route to next page
         $f3->reroute("/profile");
     }
-
     $view = new Template();
     echo $view->render('views/info.html');
 });
@@ -137,6 +130,7 @@ $f3->route('GET|POST /profile', function($f3) {
     $memberType = $_SESSION['memberType'];
 
     if(!empty($_POST)) {
+
         //save email, state, seeking, and bio
         if (isset($_POST['email'])) {
 
@@ -162,18 +156,17 @@ $f3->route('GET|POST /profile', function($f3) {
         $memberType->setState($state);
         $memberType->setSeeking($seeking);
         $memberType->setBio($bio);
-
         $_SESSION['memberType'] = $memberType;
+
         //check if premium was checked
         if($memberType instanceof PremiumMember) {
             $f3->reroute('/interests');
 
-        //if not checked
+            //if not checked
         } else {
             //jump to summary
             $f3->reroute('/summary');
         }
-
     }
 
     $view = new Template();
@@ -182,13 +175,11 @@ $f3->route('GET|POST /profile', function($f3) {
 
 //Route to interests form
 $f3->route('GET|POST /interests', function($f3) {
-
     $memberType = $_SESSION['memberType'];
 
     if(!empty($_POST)) {
         //check outdoor interests
         if(!empty($_POST['outdoor'])) {
-
             //validate outdoor interests
             if(validInterests($_POST['outdoor'])) {
                 $outdoor = $_POST['outdoor'];
@@ -199,10 +190,8 @@ $f3->route('GET|POST /interests', function($f3) {
                 $f3->set("errors['interests']", "Please select valid interests");
             }
         }
-
         //check indoor interests
         if(!empty($_POST['indoor'])) {
-
             //validate indoor interests
             if(validInterests($_POST['indoor'])) {
                 $indoor = $_POST['indoor'];
@@ -222,14 +211,77 @@ $f3->route('GET|POST /interests', function($f3) {
 });
 
 //Route to summary
-$f3->route('GET /summary', function() {
+$f3->route('GET /summary', function($f3) {
+
+    //get memberType and db object
+    $memberType = $_SESSION['memberType'];
+    global $db;
+
+    //grab values for insertion
+    $fname = $memberType->getFname();
+    $lname = $memberType->getLname();
+    $age = $memberType->getAge();
+    $phone = $memberType->getPhone();
+    $email = $memberType->getEmail();
+    $gender = $memberType->getGender();
+    $state = $memberType->getState();
+    $seeking = $memberType->getSeeking();
+    $bio = $memberType->getBio();
+
+    //insert based on member type
+    if($memberType instanceof PremiumMember) {
+        $db->insertMember($fname, $lname, $age, $phone, $email,
+            $gender, $state, $seeking, $bio, 1);
+
+        //get member id
+        $member_id = $db->getMemberID($fname, $lname);
+
+        //insert into member_interest
+        $interests = array_merge($memberType->getIndoorInterests(), $memberType->getOutdoorInterests());
+
+        foreach ($interests as $interest) {
+            $interest_id = $db->getInterestID($interest);
+            $db->insertMemberInterest($member_id['member_id'], $interest_id['interest_id']);
+        }
+    }
+    else {
+        $db->insertMember($fname, $lname, $age, $phone, $email,
+            $gender, $state, $seeking, $bio, 0);
+    }
 
     $view = new Template();
     echo $view->render('views/summary.html');
 });
 
+//admin route
+$f3->route('GET|POST /admin', function ($f3) {
+
+    global $db;
+    $db->connect();
+    $members = $db->getMembers();
+
+    //set members and db for use in admin
+    $f3->set('members', $members);
+    $f3->set('db', $db);
+
+    //display a view
+    $view = new Template();
+    echo $view->render('views/admin.html');
+});
+
+// route to view profiles based on member id
+$f3->route("GET /detail/@member_id", function($f3, $params) {
+
+    global $db;
+    $id = $params['member_id'];
+    $member= $db->getMember($id);
+
+    $f3->set("member", $member);
+
+    $template = new Template();
+    echo $template->render('views/member_summary.html');
+});
 
 //Run fat free
 $f3->run();
-
 ?>
